@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node ./src/index.js",
-    "chat": "npx tsx ./examples/chat.ts"
+    "chat": "npx tsx ./src/index.ts"
   },
   "keywords": [],
   "author": "",
