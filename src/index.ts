@@ -1,8 +1,18 @@
 import "dotenv/config";
-import { Agent, run, user, withTrace } from "@openai/agents";
+import { initLogger } from "braintrust";
+import { OpenAIAgentsTraceProcessor } from "@braintrust/openai-agents";
+import { Agent, run, user, withTrace, addTraceProcessor } from "@openai/agents";
 import type { AgentInputItem } from "@openai/agents";
 import { ask, autoMode } from "./utils/ask";
 import { basicAgent } from "./agents/basicAgent";
+
+const logger = initLogger({
+  projectName: "OpenAI Agents Braintrust Exploration",
+});
+
+// Add the processor to OpenAI Agents
+const processor = new OpenAIAgentsTraceProcessor({ logger });
+addTraceProcessor(processor);
 
 let history: AgentInputItem[] = [];
 let latestAgent: Agent = basicAgent;
